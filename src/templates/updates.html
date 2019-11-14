@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Updates on {{ site.TITLE}} {% endblock %}
+{% block content %}
+<div class="header">
+  <h1><a href="/" >{{ site.TITLE }}</a></h1>
+  <h2>Updates</h2>
+</div>
+<div class="page-body">
+{% if updates %}
+{% include "_update_list.html" %}
+{% else %}
+<div><h2>No updates</h2></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,46 @@
+  {% for day, type in updates.items() %}
+      {% for type, updates  in type.items() %}
+
+        {% if type == 'featured' %}
+
+          {% for update in updates %}
+          <div id="{{ update.date.strftime('%Y-%m-%d_%H%M%S') }}"
+               class="update-featured">
+            {{ update.html|safe }}
+          </div>
+          {% endfor %}
+
+        {% else %}
+
+          {% for update in updates %}
+          <div id="{{ update.date.strftime('%Y-%m-%d_%H%M%S') }}"
+               class="update-regular">
+
+            {% if not loop.first and not loop.previtem.featured %}
+              {% set prevdate = loop.previtem.date.strftime('%Y-%m-%d') %}
+              {% set date = update.date.strftime('%Y-%m-%d') %}
+              {% if date == prevdate %}
+
+                <div class="update-spacer"></div>
+
+              {% else %}
+
+                <date class="update-date">{{ update.date | datetime }}</date>
+
+              {% endif %}
+
+              {{ update.html|safe }}
+
+            {% else %}
+
+              <date class="update-date">{{ update.date | datetime }}</date>
+
+              {{ update.html|safe }}
+
+            {% endif %}
+          </div>
+          {% endfor %}
+
+        {% endif %}
+      {% endfor %}
+  {% endfor %}

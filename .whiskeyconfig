@@ -1,0 +1,4 @@
+TITLE='Hello World'
+BASE_URL='https://example.com'
+BASE_NAME='example.com'
+SITE_STYLE='static'
